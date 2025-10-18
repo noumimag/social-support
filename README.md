@@ -55,6 +55,16 @@ npm run dev
 yarn dev
 ```
 
+### 5. Run Tests (Optional)
+
+```bash
+# Run tests in watch mode
+npm test
+
+# Run tests once
+npm run test:ci
+```
+
 ### Testing and Debug
 
 The application includes built-in error handling and will show appropriate messages if:
@@ -72,6 +82,8 @@ npm run build        # Build for production
 npm run preview      # Preview production build
 npm run lint         # Run ESLint
 npm run format       # Format code with Prettier
+npm test             # Run tests in watch mode
+npm run test:ci      # Run tests once (for CI/CD)
 ```
 
 ## Project Architecture
@@ -80,16 +92,22 @@ npm run format       # Format code with Prettier
 src/
 ├── components/       # Reusable UI components
 ├── pages/            # Application steps + success page
-├── store/            # Redux state
+├── store/            # Redux state management
 ├── services/         # APIs + AI helpers
 ├── validation/       # Yup schemas per step
 ├── i18n/             # Language files (en + ar)
-└── utils/            # Helpers and ErrorBoundary
+├── hooks/            # Custom React hooks
+├── context/          # React context providers
+├── constants/        # Application constants
+├── selectors/        # Redux selectors
+├── utils/            # Helpers and ErrorBoundary
+├── __tests__/        # Test files (Jest + RTL)
+└── setupTests.js     # Test configuration
 ```
 
 ### Key Technologies
 
-- **React 19**: Latest React
+- **React 19**: Latest React with modern features
 - **Redux Toolkit**: State management with RTK Query
 - **React Hook Form**: Form handling with validation
 - **Yup**: Schema validation
@@ -98,6 +116,8 @@ src/
 - **Tailwind CSS**: Utility-first CSS framework
 - **Lucide React**: Icon library
 - **Vite**: Build tool and dev server
+- **Jest**: Testing framework
+- **React Testing Library**: Component testing utilities
 
 ### State Management
 
@@ -183,6 +203,42 @@ The application can be deployed to:
 
 ## Testing
 
+### Automated Testing
+
+The application includes comprehensive testing setup with Jest and React Testing Library:
+
+```bash
+# Run tests in watch mode (development)
+npm test
+
+# Run tests once (CI/CD)
+npm run test:ci
+
+# Run tests with coverage
+npm test -- --coverage
+```
+
+**Test Coverage:**
+
+- Component rendering tests
+- Form validation testing
+- Accessibility testing
+- User interaction testing
+- Error handling tests
+
+**Test Files:**
+
+- `src/__tests__/Header.test.jsx` - Header component tests
+- `src/__tests__/Step1Personal.test.jsx` - Form component tests
+- `src/setupTests.js` - Test configuration and mocks
+
+**Testing Configuration:**
+
+- `jest.config.js` - Jest configuration with ES modules support
+- ESLint configured for Jest globals in test files
+- Mock implementations for React Router, Redux, and i18n
+- TextEncoder/TextDecoder polyfills for Node.js compatibility
+
 ### Manual Testing
 
 1. **Form Validation**: Test all validation rules
@@ -209,12 +265,13 @@ The application includes a mock API for testing form submission:
 ## Future Improvements
 
 - **Secure Token Handling**: Move sensitive logic to a backend service and add encryption + decryption to improve API token security
-- **Unit Testing**: Jest and React Testing Library
-- **E2E Testing**: Playwright or Cypress
+- **E2E Testing**: Playwright or Cypress for end-to-end testing
 - **PWA Features**: Offline support and caching. Installable app behavior for mobile users.
 - **Advanced AI**: Add smarter AI suggestions, tone control, and contextual understanding.
 - **Analytics**: User behavior tracking to understand and improve UX.
 - **A/B Testing**: Experiment with UI variations to improve user success rate and form completion.
+- **Performance Monitoring**: Add performance metrics and monitoring
+- **Additional Test Coverage**: Expand test coverage for all components and hooks
 
 ---
 
