@@ -1,0 +1,735 @@
+/**
+ * Dropdown Component v3.1.1
+ * Author: nouman.k@outlook.com
+ * 
+ * A comprehensive dropdown component with Lucide icons integration,
+ * smooth animations, and full theme support.
+ * 
+ * Features:
+ * - Lucide React icons integration
+ * - Smooth icon rotation animations
+ * - Click outside to close functionality
+ * - Keyboard navigation support
+ * - Search functionality
+ * - Multi-select support
+ * - Responsive design
+ * - Dark mode support
+ * - RTL language support
+ * - Theme variants
+ * - Accessibility features
+ */
+
+/* ==========================================================================
+   Dropdown Base Styles
+   ========================================================================== */
+
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.dropdown-trigger {
+  position: relative;
+  width: 100%;
+  min-height: 42px;
+  padding: 8px 12px;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dark .dropdown-trigger {
+  background-color: #1f2937;
+  border-color: #4b5563;
+  color: white;
+}
+
+.dropdown-trigger:hover {
+  border-color: #9ca3af;
+}
+
+.dark .dropdown-trigger:hover {
+  border-color: #6b7280;
+}
+
+.dropdown-trigger:focus {
+  outline: none;
+  border-color: #fbbf24;
+  box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.2);
+}
+
+.dropdown-trigger.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #f3f4f6;
+}
+
+.dark .dropdown-trigger.disabled {
+  background-color: #374151;
+}
+
+.dropdown-trigger.error {
+  border-color: #ef4444;
+}
+
+.dropdown-trigger.error:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}
+
+/* ==========================================================================
+   Dropdown Icon Styles
+   ========================================================================== */
+
+.dropdown-icon {
+  width: 16px;
+  height: 16px;
+  color: #9ca3af;
+  flex-shrink: 0;
+  transition: transform 200ms ease-in-out;
+}
+
+.dark .dropdown-icon {
+  color: #6b7280;
+}
+
+.dropdown-icon.open {
+  transform: rotate(180deg);
+}
+
+/* RTL Support for Icons */
+[dir='rtl'] .dropdown-icon {
+  transform: scaleX(-1);
+}
+
+[dir='rtl'] .dropdown-icon.open {
+  transform: scaleX(-1) rotate(180deg);
+}
+
+/* ==========================================================================
+   Dropdown Menu Styles
+   ========================================================================== */
+
+.dropdown-menu {
+  position: absolute;
+  z-index: 50;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  min-width: 200px;
+  max-height: 200px;
+}
+
+.dark .dropdown-menu {
+  background-color: #1f2937;
+  border-color: #4b5563;
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.3),
+    0 4px 6px -2px rgba(0, 0, 0, 0.2);
+}
+
+/* Position Variants */
+.dropdown-menu.bottom-left {
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+}
+
+.dropdown-menu.bottom-right {
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+}
+
+.dropdown-menu.top-left {
+  bottom: 100%;
+  left: 0;
+  margin-bottom: 4px;
+}
+
+.dropdown-menu.top-right {
+  bottom: 100%;
+  right: 0;
+  margin-bottom: 4px;
+}
+
+/* ==========================================================================
+   Dropdown Animation Styles
+   ========================================================================== */
+
+.dropdown-enter {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+}
+
+.dropdown-enter-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition:
+    opacity 200ms ease-out,
+    transform 200ms ease-out;
+}
+
+.dropdown-exit {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.dropdown-exit-active {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+  transition:
+    opacity 150ms ease-in,
+    transform 150ms ease-in;
+}
+
+/* ==========================================================================
+   Dropdown Search Styles
+   ========================================================================== */
+
+.dropdown-search-container {
+  padding: 2px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dark .dropdown-search-container {
+  border-bottom-color: #4b5563;
+}
+
+.dropdown-search-wrapper {
+  position: relative;
+}
+
+.dropdown-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: #9ca3af;
+}
+
+.dark .dropdown-search-icon {
+  color: #6b7280;
+}
+
+/* RTL Support for Search Icon */
+[dir='rtl'] .dropdown-search-icon {
+  left: auto;
+  right: 12px;
+}
+
+.dropdown-search-input {
+  width: 100%;
+  padding: 8px 12px 8px 36px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #111827;
+  font-size: 14px;
+}
+
+.dark .dropdown-search-input {
+  color: white;
+}
+
+/* RTL Support for Search Input */
+[dir='rtl'] .dropdown-search-input {
+  padding: 8px 36px 8px 12px;
+  text-align: right;
+}
+
+.dropdown-search-input::placeholder {
+  color: #9ca3af;
+}
+
+.dark .dropdown-search-input::placeholder {
+  color: #6b7280;
+}
+
+.dropdown-search-clear {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: color 150ms ease-in-out;
+}
+
+.dark .dropdown-search-clear {
+  color: #6b7280;
+}
+
+.dropdown-search-clear:hover {
+  color: #6b7280;
+}
+
+.dark .dropdown-search-clear:hover {
+  color: #9ca3af;
+}
+
+/* RTL Support for Clear Button */
+[dir='rtl'] .dropdown-search-clear {
+  right: auto;
+  left: 8px;
+}
+
+/* ==========================================================================
+   Dropdown Options Styles
+   ========================================================================== */
+
+.dropdown-options {
+  max-height: 192px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.dropdown-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+  color: #374151;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+
+.dark .dropdown-option {
+  color: #d1d5db;
+}
+
+.dropdown-option:hover {
+  background-color: #f9fafb;
+  transform: translateX(2px);
+}
+
+.dark .dropdown-option:hover {
+  background-color: #374151;
+}
+
+.dropdown-option:focus {
+  outline: 2px solid #fef3c7;
+  outline-offset: -2px;
+}
+
+/* RTL Support for Hover Effects */
+[dir='rtl'] .dropdown-option:hover {
+  transform: translateX(-2px);
+}
+
+/* Selected Option Styles */
+.dropdown-option.selected {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.dark .dropdown-option.selected {
+  background-color: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+}
+
+/* Focused Option Styles */
+.dropdown-option.focused {
+  background-color: #fef3c7;
+}
+
+.dark .dropdown-option.focused {
+  background-color: rgba(245, 158, 11, 0.1);
+}
+
+/* ==========================================================================
+   Dropdown Checkmark Styles
+   ========================================================================== */
+
+.dropdown-checkmark {
+  width: 16px;
+  height: 16px;
+  color: #f59e0b;
+  flex-shrink: 0;
+  animation: checkmark-appear 200ms ease-out;
+}
+
+.dark .dropdown-checkmark {
+  color: #fbbf24;
+}
+
+@keyframes checkmark-appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ==========================================================================
+   Dropdown Scrollbar Styles
+   ========================================================================== */
+
+.dropdown-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dropdown-scroll::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 3px;
+}
+
+.dropdown-scroll::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+.dropdown-scroll::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Dark mode scrollbar */
+.dark .dropdown-scroll::-webkit-scrollbar-track {
+  background: #374151;
+}
+
+.dark .dropdown-scroll::-webkit-scrollbar-thumb {
+  background: #6b7280;
+}
+
+.dark .dropdown-scroll::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* ==========================================================================
+   Dropdown Two-Column Layout
+   ========================================================================== */
+
+.dropdown-two-column {
+  column-count: 2;
+  column-gap: 0;
+  column-fill: auto;
+}
+
+.dropdown-two-column .dropdown-option {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* Mobile: Single column */
+@media (max-width: 640px) {
+  .dropdown-two-column {
+    column-count: 1;
+  }
+}
+
+/* ==========================================================================
+   Dropdown Loading Styles
+   ========================================================================== */
+
+.dropdown-loading {
+  padding: 16px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.dark .dropdown-loading {
+  color: #9ca3af;
+}
+
+.dropdown-loading-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #e5e7eb;
+  border-top: 2px solid #f59e0b;
+  border-radius: 50%;
+  animation: dropdown-loading 1s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes dropdown-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================================
+   Dropdown Empty State Styles
+   ========================================================================== */
+
+.dropdown-empty {
+  padding: 16px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.dark .dropdown-empty {
+  color: #9ca3af;
+}
+
+/* ==========================================================================
+   Dropdown Theme Variants
+   ========================================================================== */
+
+/* Primary Theme */
+.dropdown-theme-primary .dropdown-trigger {
+  border-color: #fbbf24;
+  background-color: #fef3c7;
+}
+
+.dark .dropdown-theme-primary .dropdown-trigger {
+  background-color: rgba(245, 158, 11, 0.1);
+}
+
+/* Secondary Theme */
+.dropdown-theme-secondary .dropdown-trigger {
+  border-color: #d1d5db;
+  background-color: #f9fafb;
+}
+
+.dark .dropdown-theme-secondary .dropdown-trigger {
+  background-color: #1f2937;
+}
+
+/* Success Theme */
+.dropdown-theme-success .dropdown-trigger {
+  border-color: #86efac;
+  background-color: #dcfce7;
+}
+
+.dark .dropdown-theme-success .dropdown-trigger {
+  background-color: rgba(34, 197, 94, 0.1);
+}
+
+/* Warning Theme */
+.dropdown-theme-warning .dropdown-trigger {
+  border-color: #fde047;
+  background-color: #fefce8;
+}
+
+.dark .dropdown-theme-warning .dropdown-trigger {
+  background-color: rgba(234, 179, 8, 0.1);
+}
+
+/* Error Theme */
+.dropdown-theme-error .dropdown-trigger {
+  border-color: #fca5a5;
+  background-color: #fee2e2;
+}
+
+.dark .dropdown-theme-error .dropdown-trigger {
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+/* ==========================================================================
+   Dropdown Mobile Responsive Styles
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  .dropdown-mobile-full {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 0;
+    max-height: 100vh;
+    z-index: 60;
+  }
+
+  .dropdown-trigger {
+    min-height: 48px;
+    padding: 12px 16px;
+  }
+}
+
+/* ==========================================================================
+   Dropdown Accessibility Styles
+   ========================================================================== */
+
+/* Screen reader only content */
+.dropdown-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.dropdown-sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .dropdown-trigger {
+    border-width: 2px;
+  }
+
+  .dropdown-option:focus {
+    outline-width: 3px;
+  }
+}
+
+/* ==========================================================================
+   Dropdown Reduced Motion Support
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .dropdown-icon,
+  .dropdown-option,
+  .dropdown-enter,
+  .dropdown-exit,
+  .dropdown-checkmark,
+  .dropdown-loading-spinner {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .dropdown-option:hover {
+    transform: none;
+  }
+
+  [dir='rtl'] .dropdown-option:hover {
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   Dropdown Z-index Management
+   ========================================================================== */
+
+.dropdown-overlay {
+  z-index: 50;
+}
+
+.dropdown-menu {
+  z-index: 51;
+}
+
+.dropdown-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 49;
+}
+
+/* ==========================================================================
+   Dropdown Utility Classes
+   ========================================================================== */
+
+.dropdown-hidden {
+  display: none !important;
+}
+
+.dropdown-visible {
+  display: block !important;
+}
+
+.dropdown-disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.dropdown-loading {
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Dropdown RTL Support
+   ========================================================================== */
+
+[dir='rtl'] .dropdown-search-input {
+  text-align: right;
+}
+
+[dir='rtl'] .dropdown-option {
+  text-align: right;
+}
+
+[dir='rtl'] .dropdown-search-icon {
+  left: auto;
+  right: 12px;
+}
+
+[dir='rtl'] .dropdown-search-clear {
+  right: auto;
+  left: 8px;
+}
+
+/* ==========================================================================
+   Dropdown Print Styles
+   ========================================================================== */
+
+@media print {
+  .dropdown-menu {
+    display: none !important;
+  }
+
+  .dropdown-trigger {
+    border: 1px solid #000;
+    background: white !important;
+    color: black !important;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .shimmer-button::before {
+    display: none;
+  }
+
+  .dropdown-enter,
+  .dropdown-exit,
+  .dropdown-icon,
+  .dropdown-option,
+  .dropdown-search {
+    transition: none !important;
+    animation: none !important;
+  }
+}

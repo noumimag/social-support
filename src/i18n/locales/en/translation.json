@@ -1,0 +1,289 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "back": "Back",
+    "close": "Close",
+    "help": "Help",
+    "edit": "Edit",
+    "discard": "Discard"
+  },
+  "header": {
+    "title": "Social Support",
+    "goToHomepage": "Go to homepage"
+  },
+  "home": {
+    "title": "Helping people build stronger futures",
+    "subtitle": "Get the help you need through our simple, secure application process.",
+    "startApplication": "Start Application",
+    "features": {
+      "community": {
+        "title": "Community",
+        "description": "Connect with others who understand your journey."
+      },
+      "support": {
+        "title": "Support",
+        "description": "Access resources designed to help you thrive."
+      },
+      "growth": {
+        "title": "Growth",
+        "description": "Track progress and celebrate your milestones."
+      }
+    }
+  },
+  "form": {
+    "steps": {
+      "personal": "Personal Information",
+      "family": "Family & Financial Info",
+      "situation": "Situation Descriptions"
+    },
+    "navigation": {
+      "step": "Step",
+      "of": "of",
+      "continue": "Continue",
+      "back": "Back"
+    },
+    "validation": {
+      "required": "This field is required",
+      "fillAll": "Please fill all the * required fields",
+      "email": "Please enter a valid email address",
+      "phone": "Please enter a valid phone number",
+      "minLength": "Must be at least {{count}} characters",
+      "maxLength": "Must be no more than {{count}} characters",
+      "fieldRequired": "This field must not be left empty",
+      "minCharacters": "Minimum {{count}} characters required",
+      "maxCharacters": "Maximum {{count}} characters allowed",
+      "invalidNumber": "Please enter a valid number",
+      "negativeIncome": "Income cannot be negative",
+      "maxIncome": "Please enter a reasonable income amount",
+      "incomeRequired": "Monthly income is required"
+    }
+  },
+  "step1": {
+    "title": "Personal Information",
+    "subtitle": "Tell us about yourself",
+    "fields": {
+      "firstName": {
+        "label": "First Name",
+        "placeholder": "Enter your first name"
+      },
+      "lastName": {
+        "label": "Last Name",
+        "placeholder": "Enter your last name"
+      },
+      "email": {
+        "label": "Email Address",
+        "placeholder": "Enter your email address"
+      },
+      "phone": {
+        "label": "Phone Number",
+        "placeholder": "Enter your phone number"
+      },
+      "dateOfBirth": {
+        "label": "Date of Birth",
+        "placeholder": "Select your date of birth"
+      },
+      "nationalId": {
+        "label": "National ID",
+        "placeholder": "Enter your national ID"
+      },
+      "gender": {
+        "label": "Gender",
+        "options": {
+          "male": "Male",
+          "female": "Female"
+        }
+      },
+      "city": {
+        "label": "City",
+        "placeholder": "Enter your city"
+      },
+      "state": {
+        "label": "State",
+        "placeholder": "Select Emirate",
+        "options": {
+          "abuDhabi": "Abu Dhabi",
+          "dubai": "Dubai",
+          "sharjah": "Sharjah",
+          "ummAlQaiwain": "Umm Al Qaiwain",
+          "fujairah": "Fujairah",
+          "ajman": "Ajman",
+          "rasAlKhaimah": "Ras Al Khaimah"
+        }
+      },
+      "country": {
+        "label": "Country",
+        "placeholder": "Select Country",
+        "options": {
+          "uae": "United Arab Emirates"
+        }
+      },
+      "address": {
+        "label": "Address",
+        "placeholder": "Enter your complete address (street, city, postal code)"
+      }
+    },
+    "validation": {
+      "namePattern": "Name can only contain letters, spaces, hyphens, and apostrophes",
+      "idPattern": "National ID must contain only letters and numbers",
+      "cityPattern": "City name can only contain letters, spaces, hyphens, and apostrophes",
+      "phonePattern": "Please enter a valid phone number (7-15 digits, optionally starting with +)",
+      "emailPattern": "Please enter a valid email address (e.g., john@example.com)",
+      "ageRequirement": "You must be at least 18 years old to apply",
+      "futureDate": "Date of birth cannot be in the future",
+      "invalidDate": "Please enter a valid date of birth"
+    }
+  },
+  "step2": {
+    "title": "Family & Financial Info",
+    "subtitle": "Tell us about your family & financial situation",
+    "fields": {
+      "maritalStatus": {
+        "label": "Marital Status",
+        "options": {
+          "single": "Single",
+          "married": "Married",
+          "divorced": "Divorced",
+          "widowed": "Widowed"
+        }
+      },
+      "dependents": {
+        "label": "Number of Dependents",
+        "placeholder": "Select number of dependents...",
+        "helpText": "Include children, elderly parents, or other family members who depend on you financially",
+        "options": {
+          "0": "0 (No dependents)",
+          "1": "1 dependent",
+          "multiple": "{{count}} dependents"
+        }
+      },
+      "employmentStatus": {
+        "label": "Employment Status",
+        "placeholder": "Select employment status...",
+        "options": {
+          "employedFullTime": "Employed Full-time",
+          "employedPartTime": "Employed Part-time",
+          "selfEmployed": "Self-employed",
+          "unemployed": "Unemployed",
+          "student": "Student",
+          "retired": "Retired",
+          "disabled": "Disabled",
+          "other": "Other"
+        }
+      },
+      "monthlyIncome": {
+        "label": "Monthly Income",
+        "placeholder": "0.00",
+        "currency": "AED",
+        "helpText": "Enter your gross monthly income"
+      },
+      "housingStatus": {
+        "label": "Housing Status",
+        "placeholder": "Select housing status...",
+        "helpText": "Select your current housing situation",
+        "options": {
+          "ownWithMortgage": "Own Home (with mortgage)",
+          "ownPaidOff": "Own Home (paid off)",
+          "rent": "Rent",
+          "liveWithFamily": "Live with family/friends",
+          "temporaryHousing": "Temporary housing",
+          "homeless": "Homeless",
+          "other": "Other"
+        }
+      }
+    },
+    "validation": {
+      "maritalStatusRequired": "Please select your marital status",
+      "dependentsRequired": "Please select the number of dependents",
+      "employmentStatusRequired": "Please select your employment status",
+      "monthlyIncomeRequired": "Monthly income is required",
+      "housingStatusRequired": "Please select your housing status"
+    }
+  },
+  "step3": {
+    "title": "Situation Descriptions",
+    "subtitle": "Tell us about your current situation and needs",
+    "fields": {
+      "situation": {
+        "label": "Describe your current situation",
+        "placeholder": "Please describe your current situation and what kind of support you need...",
+        "helpText": "Be as detailed as possible. This helps us understand how to best support you.",
+        "title": "Situation Descriptions"
+      },
+      "employment": {
+        "label": "Employment Circumstances",
+        "placeholder": "Describe your work situation, any job loss, reduced hours, or employment challenges..."
+      },
+      "reason": {
+        "label": "Reason for Applying for Support",
+        "placeholder": "Explain why you need support and how it would help you and your family..."
+      },
+      "needs": {
+        "label": "What kind of support do you need?",
+        "options": {
+          "financial": "Financial assistance",
+          "emotional": "Emotional support",
+          "practical": "Practical help",
+          "information": "Information and resources",
+          "other": "Other"
+        }
+      },
+      "urgency": {
+        "label": "How urgent is your need?",
+        "options": {
+          "immediate": "Immediate (within 24 hours)",
+          "urgent": "Urgent (within a week)",
+          "moderate": "Moderate (within a month)",
+          "flexible": "Flexible timing"
+        }
+      }
+    },
+    "aiHelp": {
+      "title": "Need help writing?",
+      "description": "Our AI can help you write a clear, compelling description of Situation Descriptions.",
+      "button": "Help Me Write",
+      "modal": {
+        "title": "AI Writing Assistant",
+        "description": "Describe what you'd like help with, and our AI will help you write a clear statement.",
+        "placeholder": "I need help writing about...",
+        "generate": "Generate Suggestion",
+        "useSuggestion": "Use This Suggestion",
+        "regenerate": "Regenerate",
+        "close": "Close",
+        "editSuggestion": "Edit the suggestion:",
+        "suggestion": "AI Suggestion",
+        "disclaimer": "Suggestions are generated by AI. Please review before submitting."
+      }
+    },
+    "validation": {
+      "aiFieldEmpty": "Please enter some text in the field before requesting AI assistance.",
+      "characterCount": "{{current}}/{{max}}"
+    }
+  },
+  "success": {
+    "title": "Application Submitted Successfully!",
+    "subtitle": "Thank you for your application. We have received your information and will review it carefully.",
+    "redirectMessage": "You will be redirected to the homepage in a few moments, or click the button below to return immediately.",
+    "accessDenied": "You need to complete an application first. Redirecting to home page...",
+    "nextSteps": "What happens next?",
+    "timeline": "We typically review applications within 3-5 business days.",
+    "contact": "If you have any questions, please don't hesitate to contact us.",
+    "backToHome": "Back to Home"
+  },
+  "language": {
+    "toggle": "Language",
+    "english": "English",
+    "arabic": "العربية"
+  },
+  "dropdown": {
+    "searchPlaceholder": "Search...",
+    "noOptionsFound": "No options found",
+    "loading": "Loading..."
+  }
+}
