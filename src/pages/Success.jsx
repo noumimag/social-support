@@ -89,7 +89,7 @@ const Success = ({ onBackToHome }) => {
         </p>
         <button
           onClick={onBackToHome}
-          className='inline-flex items-center px-8 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-accent-300 to-accent-400 hover:from-accent-400 hover:to-accent-500 text-white font-semibold rounded-full focus:outline-none focus:ring-4 focus:ring-accent-200/50 focus:ring-offset-2 transition-all duration-300 text-lg sm:text-xl shadow-2xl hover:shadow-accent-200/25 hover:scale-110 min-h-[52px] transform group relative overflow-hidden shimmer-button'
+          className='inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-accent-300 to-accent-400 hover:from-accent-400 hover:to-accent-500 text-white font-semibold rounded-full focus:outline-none focus:ring-4 focus:ring-accent-200/50 focus:ring-offset-2 transition-all duration-300 text-base sm:text-lg shadow-lg hover:shadow-accent-200/25 hover:scale-105 min-h-[44px] transform group relative overflow-hidden shimmer-button'
           aria-label='Back to Home'
         >
           {t('success.backToHome')}

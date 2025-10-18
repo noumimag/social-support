@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react'
 import { ChevronDown, Check, Search, X } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { useController } from 'react-hook-form'
+import ErrorMessage from './ErrorMessage'
 
 const Dropdown = ({
   options = [],
@@ -60,6 +61,7 @@ const Dropdown = ({
   const fieldTouched = controller && control ? controller.fieldState.isTouched : false
 
   // Determine if field should show error
+  // Only show errors if field is touched or validation is explicitly shown
   const shouldShowError = fieldError && (fieldTouched || showValidation)
   const isFieldInvalid = shouldShowError
 
@@ -231,7 +233,7 @@ const Dropdown = ({
       case 'bottom-right':
         return `${baseClasses} top-full right-0 mt-1`
       default: // bottom-left
-        return `${baseClasses} top-full ltr:left-0 mt-1`
+        return `${baseClasses} top-half ltr:left-0 mt-1`
     }
   }
 
@@ -362,15 +364,13 @@ const Dropdown = ({
         </div>
       )}
 
-      {/* Error Message */}
-      {shouldShowError && fieldError && (
-        <p
+      {/* Error Message - Only show if showValidation is true */}
+      {showValidation && (
+        <ErrorMessage
           id={`${name}-error`}
-          className='mt-2 text-sm text-red-600 dark:text-red-400'
-          role='alert'
-        >
-          {fieldError.message}
-        </p>
+          message={shouldShowError && fieldError ? fieldError.message : ''}
+          isVisible={shouldShowError && !!fieldError}
+        />
       )}
     </div>
   )

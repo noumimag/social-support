@@ -10,6 +10,7 @@ import {
   getAriaAttributes,
 } from '../utils/formValidation'
 import Dropdown from '../components/Dropdown'
+import ErrorMessage from '../components/ErrorMessage'
 import {
   genderOptions,
   stateOptions,
@@ -51,21 +52,21 @@ const Step1Personal = forwardRef((props, ref) => {
   handleArrowNavigation(genderGroupRef, { orientation: 'horizontal' })
 
   return (
-    <div className='w-full'>
-      <div className='mb-6'>
+    <article className='w-full'>
+      <header className='mb-6'>
         <h2 className='text-lg rtl:text-lg sm:text-2xl font-bold text-gray-900 dark:text-white'>
           {t('step1.title')}
         </h2>
-      </div>
+      </header>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className='space-y-4 sm:space-y-8'
+        className='space-y-2 sm:space-y-4'
         role='form'
         aria-label='Personal Information Form'
       >
         {/* Basic Information Section */}
         <div className='space-y-4'>
-          <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2'>
             <div>
               <label htmlFor='firstName' className='input-label'>
                 {t('step1.fields.firstName.label')} <span className='text-red-500'>*</span>
@@ -79,15 +80,15 @@ const Step1Personal = forwardRef((props, ref) => {
                 {...getAriaAttributes('firstName', errors)}
                 autoComplete='given-name'
               />
-              {shouldShowError('firstName') && errors.firstName && (
-                <p
-                  id='firstName-error'
-                  role='alert'
-                  className='mt-2 text-sm text-red-600 dark:text-red-400'
-                >
-                  {translateErrorMessage(errors.firstName.message)}
-                </p>
-              )}
+              <ErrorMessage
+                id='firstName-error'
+                message={
+                  shouldShowError('firstName') && errors.firstName
+                    ? translateErrorMessage(errors.firstName.message)
+                    : ''
+                }
+                isVisible={shouldShowError('firstName') && !!errors.firstName}
+              />
             </div>
 
             <div>
@@ -103,15 +104,15 @@ const Step1Personal = forwardRef((props, ref) => {
                 {...getAriaAttributes('lastName', errors)}
                 autoComplete='family-name'
               />
-              {shouldShowError('lastName') && errors.lastName && (
-                <p
-                  id='lastName-error'
-                  role='alert'
-                  className='mt-2 text-sm text-red-600 dark:text-red-400'
-                >
-                  {translateErrorMessage(errors.lastName.message)}
-                </p>
-              )}
+              <ErrorMessage
+                id='lastName-error'
+                message={
+                  shouldShowError('lastName') && errors.lastName
+                    ? translateErrorMessage(errors.lastName.message)
+                    : ''
+                }
+                isVisible={shouldShowError('lastName') && !!errors.lastName}
+              />
             </div>
           </div>
         </div>
@@ -133,11 +134,15 @@ const Step1Personal = forwardRef((props, ref) => {
                 {...getAriaAttributes('nationalId', errors)}
                 autoComplete='off'
               />
-              {shouldShowError('nationalId') && errors.nationalId && (
-                <p className='mt-2 text-sm text-red-600 dark:text-red-400'>
-                  {translateErrorMessage(errors.nationalId.message)}
-                </p>
-              )}
+              <ErrorMessage
+                id='nationalId-error'
+                message={
+                  shouldShowError('nationalId') && errors.nationalId
+                    ? translateErrorMessage(errors.nationalId.message)
+                    : ''
+                }
+                isVisible={shouldShowError('nationalId') && !!errors.nationalId}
+              />
             </div>
 
             <div>
@@ -153,11 +158,15 @@ const Step1Personal = forwardRef((props, ref) => {
                 {...getAriaAttributes('dateOfBirth', errors)}
                 autoComplete='bday'
               />
-              {shouldShowError('dateOfBirth') && errors.dateOfBirth && (
-                <p className='mt-2 text-sm text-red-600 dark:text-red-400'>
-                  {translateErrorMessage(errors.dateOfBirth.message)}
-                </p>
-              )}
+              <ErrorMessage
+                id='dateOfBirth-error'
+                message={
+                  shouldShowError('dateOfBirth') && errors.dateOfBirth
+                    ? translateErrorMessage(errors.dateOfBirth.message)
+                    : ''
+                }
+                isVisible={shouldShowError('dateOfBirth') && !!errors.dateOfBirth}
+              />
             </div>
           </div>
         </div>
@@ -193,15 +202,15 @@ const Step1Personal = forwardRef((props, ref) => {
                   </label>
                 ))}
               </div>
-              {shouldShowError('gender') && errors.gender && (
-                <p
-                  id='gender-error'
-                  role='alert'
-                  className='mt-2 text-sm text-red-600 dark:text-red-400'
-                >
-                  {translateErrorMessage(errors.gender.message)}
-                </p>
-              )}
+              <ErrorMessage
+                id='gender-error'
+                message={
+                  shouldShowError('gender') && errors.gender
+                    ? translateErrorMessage(errors.gender.message)
+                    : ''
+                }
+                isVisible={shouldShowError('gender') && !!errors.gender}
+              />
             </fieldset>
           </div>
         </div>
@@ -222,11 +231,15 @@ const Step1Personal = forwardRef((props, ref) => {
                 {...getAriaAttributes('city', errors)}
                 autoComplete='address-level2'
               />
-              {shouldShowError('city') && errors.city && (
-                <p className='mt-2 text-sm text-red-600 dark:text-red-400'>
-                  {translateErrorMessage(errors.city.message)}
-                </p>
-              )}
+              <ErrorMessage
+                id='city-error'
+                message={
+                  shouldShowError('city') && errors.city
+                    ? translateErrorMessage(errors.city.message)
+                    : ''
+                }
+                isVisible={shouldShowError('city') && !!errors.city}
+              />
             </div>
 
             <div>
@@ -267,7 +280,7 @@ const Step1Personal = forwardRef((props, ref) => {
                   label: getLocalizedLabel(option, getCurrentLanguage(i18n)),
                 }))}
                 placeholder={t('step1.fields.country.placeholder')}
-                searchable={true}
+                searchable={false}
                 minWidth='200px'
                 position='bottom-left'
                 aria-required='true'
@@ -288,11 +301,15 @@ const Step1Personal = forwardRef((props, ref) => {
               {...getAriaAttributes('address', errors)}
               autoComplete='street-address'
             />
-            {shouldShowError('address') && errors.address && (
-              <p className='mt-2 text-sm text-red-600 dark:text-red-400'>
-                {translateErrorMessage(errors.address.message)}
-              </p>
-            )}
+            <ErrorMessage
+              id='address-error'
+              message={
+                shouldShowError('address') && errors.address
+                  ? translateErrorMessage(errors.address.message)
+                  : ''
+              }
+              isVisible={shouldShowError('address') && !!errors.address}
+            />
           </div>
         </div>
 
@@ -313,11 +330,15 @@ const Step1Personal = forwardRef((props, ref) => {
                 {...getAriaAttributes('phone', errors)}
                 autoComplete='tel'
               />
-              {shouldShowError('phone') && errors.phone && (
-                <p className='mt-2 text-sm text-red-600 dark:text-red-400'>
-                  {translateErrorMessage(errors.phone.message)}
-                </p>
-              )}
+              <ErrorMessage
+                id='phone-error'
+                message={
+                  shouldShowError('phone') && errors.phone
+                    ? translateErrorMessage(errors.phone.message)
+                    : ''
+                }
+                isVisible={shouldShowError('phone') && !!errors.phone}
+              />
             </div>
 
             <div>
@@ -333,16 +354,20 @@ const Step1Personal = forwardRef((props, ref) => {
                 {...getAriaAttributes('email', errors)}
                 autoComplete='email'
               />
-              {shouldShowError('email') && errors.email && (
-                <p className='mt-2 text-sm text-red-600 dark:text-red-400'>
-                  {translateErrorMessage(errors.email.message)}
-                </p>
-              )}
+              <ErrorMessage
+                id='email-error'
+                message={
+                  shouldShowError('email') && errors.email
+                    ? translateErrorMessage(errors.email.message)
+                    : ''
+                }
+                isVisible={shouldShowError('email') && !!errors.email}
+              />
             </div>
           </div>
         </div>
       </form>
-    </div>
+    </article>
   )
 })
 

@@ -54,33 +54,30 @@ const StepNavigation = ({
 
   return (
     <div className='flex rtl:flex-row-reverse flex-row justify-between items-center gap-4 pt-4 sm:pt-6'>
-      {/* Back Button */}
-      <button
-        onClick={handleBack}
-        disabled={!canGoBack}
-        className={`
-          flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 font-semibold rounded-full transition-all duration-300 min-h-[48px] transform group
-          ${
-            canGoBack
-              ? 'text-gray-700 hover:text-gray-900 dark:text-gray-200 dark:hover:text-white bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 shadow-lg hover:shadow-xl hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-300/50 focus:ring-offset-2 dark:focus:ring-offset-gray-800'
-              : 'text-gray-300 cursor-not-allowed dark:text-gray-600 bg-gray-50 dark:bg-gray-900'
-          }
-        `}
-        aria-label='Go to previous step'
-      >
-        {i18n.language === 'ar' ? (
-          <ArrowRight
-            className='w-5 h-5 sm:w-6 sm:h-6 rtl:ml-2 mr-2 transition-transform duration-300 group-hover:translate-x-1 drop-shadow-sm'
-            aria-hidden='true'
-          />
-        ) : (
-          <ArrowLeft
-            className='w-5 h-5 sm:w-6 sm:h-6 rtl:ml-2 mr-2 transition-transform duration-300 group-hover:-translate-x-1 drop-shadow-sm'
-            aria-hidden='true'
-          />
-        )}
-        {t('common.back')}
-      </button>
+      {/* Back Button - Only show if not on Step 1 */}
+      {canGoBack && (
+        <button
+          onClick={handleBack}
+          className='flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 font-semibold rounded-full transition-all duration-300 min-h-[48px] transform group text-gray-700 hover:text-gray-900 dark:text-gray-200 dark:hover:text-white bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 shadow-lg hover:shadow-xl hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-300/50 focus:ring-offset-2 dark:focus:ring-offset-gray-800'
+          aria-label='Go to previous step'
+        >
+          {i18n.language === 'ar' ? (
+            <ArrowRight
+              className='w-5 h-5 sm:w-6 sm:h-6 rtl:ml-2 mr-2 transition-transform duration-300 group-hover:translate-x-1 drop-shadow-sm'
+              aria-hidden='true'
+            />
+          ) : (
+            <ArrowLeft
+              className='w-5 h-5 sm:w-6 sm:h-6 rtl:ml-2 mr-2 transition-transform duration-300 group-hover:-translate-x-1 drop-shadow-sm'
+              aria-hidden='true'
+            />
+          )}
+          {t('common.back')}
+        </button>
+      )}
+
+      {/* Spacer div when back button is hidden to maintain layout */}
+      {!canGoBack && <div></div>}
 
       {/* Next/Submit Button */}
       <div className='relative group'>

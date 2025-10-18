@@ -17,7 +17,7 @@ const initialState = {
   },
   step2: {
     maritalStatus: '',
-    dependents: 0,
+    dependents: '',
     employmentStatus: '',
     monthlyIncome: '',
     housingStatus: '',

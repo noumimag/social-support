@@ -28,6 +28,23 @@
   @apply block text-sm rtl:text-xs font-medium text-gray-900 dark:text-gray-200 mb-4 rtl:text-right ltr:text-left;
 }
 
+/* Error message container - reserves space to prevent layout shift */
+.error-message-container {
+  @apply min-h-[1.5rem] mt-2;
+}
+
+.error-message {
+  @apply text-sm text-red-600 dark:text-red-400 transition-opacity duration-200;
+}
+
+.error-message.hidden {
+  @apply opacity-0 pointer-events-none;
+}
+
+.error-message.visible {
+  @apply opacity-100;
+}
+
 /* RTL support for form validation messages */
 [dir='rtl'] .text-red-600,
 [dir='rtl'] .text-red-400 {

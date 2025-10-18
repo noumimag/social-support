@@ -127,23 +127,24 @@ const Step2Family = forwardRef((props, ref) => {
             <Dropdown
               name='dependents'
               control={control}
-              rules={{
-                required: t('step2.validation.dependentsRequired'),
-                validate: value => {
-                  if (value === '' || value === null || isNaN(Number(value))) {
-                    return t('step2.validation.dependentsRequired')
-                  }
-                  return true
-                },
-              }}
+              rules={getDropdownValidation(t, 'dependents')}
               options={dependentsOptions}
               placeholder={t('step2.fields.dependents.placeholder')}
-              searchable={false}
+              searchable={true}
               minWidth='200px'
               position='bottom-left'
               aria-required='true'
               showValidation={false} // This will be handled by the hook
             />
+            {shouldShowError('dependents') && errors.dependents && (
+              <p
+                id='dependents-error'
+                role='alert'
+                className='mt-2 text-sm text-red-600 dark:text-red-400'
+              >
+                {translateErrorMessage(errors.dependents.message)}
+              </p>
+            )}
             <p className='mt-2 text-sm text-gray-500 dark:text-gray-400'>
               {t('step2.fields.dependents.helpText')}
             </p>
@@ -168,6 +169,15 @@ const Step2Family = forwardRef((props, ref) => {
               aria-required='true'
               showValidation={false} // This will be handled by the hook
             />
+            {shouldShowError('employmentStatus') && errors.employmentStatus && (
+              <p
+                id='employmentStatus-error'
+                role='alert'
+                className='mt-2 text-sm text-red-600 dark:text-red-400'
+              >
+                {translateErrorMessage(errors.employmentStatus.message)}
+              </p>
+            )}
           </div>
         </div>
 
@@ -236,6 +246,15 @@ const Step2Family = forwardRef((props, ref) => {
               aria-required='true'
               showValidation={false} // This will be handled by the hook
             />
+            {shouldShowError('housingStatus') && errors.housingStatus && (
+              <p
+                id='housingStatus-error'
+                role='alert'
+                className='mt-2 text-sm text-red-600 dark:text-red-400'
+              >
+                {translateErrorMessage(errors.housingStatus.message)}
+              </p>
+            )}
             <p className='text-sm text-gray-500 dark:text-gray-400'>
               {t('step2.fields.housingStatus.helpText')}
             </p>
